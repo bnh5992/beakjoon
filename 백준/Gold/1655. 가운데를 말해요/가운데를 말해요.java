@@ -7,31 +7,37 @@ import java.util.PriorityQueue;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
         int n = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
         PriorityQueue<Integer> q = new PriorityQueue<>();
         PriorityQueue<Integer> rq = new PriorityQueue<>(Collections.reverseOrder());
-        rq.add(Integer.valueOf(br.readLine()));
-        sb.append(rq.peek()).append("\n");
-
+        q.add(Integer.valueOf(br.readLine()));
+        sb.append(q.peek()).append("\n");
         for (int i = 0; i < n-1; i++) {
-            if(i%2 != 0){
-                rq.add(Integer.valueOf(br.readLine()));
-                if(q.peek()<rq.peek()){
-                    q.add(rq.poll());
+            int now = Integer.parseInt(br.readLine());
+            if(q.size() == rq.size()+2){
+                if(now < q.peek()){
+                    rq.add(now);
+                }
+                else{
+                    q.add(now);
                     rq.add(q.poll());
                 }
             }
             else{
-                q.add(Integer.valueOf(br.readLine()));
-                if(q.peek()<rq.peek()){
+                if(now < q.peek()){
+                    rq.add(now);
                     q.add(rq.poll());
-                    rq.add(q.poll());
+                    sb.append(q.peek()).append("\n");
+                    continue;
+                }
+                else{
+                    q.add(now);
                 }
             }
-            sb.append(rq.peek()).append("\n");
+
+            sb.append(q.peek()).append("\n");
         }
         System.out.println(sb);
-
     }
 }
