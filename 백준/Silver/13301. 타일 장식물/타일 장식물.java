@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int[] dp = new int[n+1];
-        int[] fibo = new int[n+1];
+        long[] dp = new long[n+1];
+        long[] fibo = new long[n+1];
         dp[0] = 4;
         dp[1] = 6;
         fibo[0] = 1;
